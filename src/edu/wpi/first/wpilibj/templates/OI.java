@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.commands.ArmExtend;
 import edu.wpi.first.wpilibj.templates.commands.ArmRetract;
+import edu.wpi.first.wpilibj.templates.commands.Autonomous;
 import edu.wpi.first.wpilibj.templates.commands.CompressorRun;
 import edu.wpi.first.wpilibj.templates.commands.CompressorStop;
 
@@ -53,12 +54,19 @@ public class OI {
    public Button b1 = new JoystickButton(stickOne, 1);
    public Button b2 = new JoystickButton(stickOne, 2);
    public Button b3 = new JoystickButton(stickOne, 3);
+   public Button b4 = new JoystickButton(stickOne, 4);
+   public Button b5 = new JoystickButton(stickOne, 5);
+   public Button b6 = new JoystickButton(stickOne, 6);
+   public Button b7 = new JoystickButton(stickOne, 7);
+   public Button b8 = new JoystickButton(stickOne, 8);
+   public Button b9 = new JoystickButton(stickOne, 9);
    
     public OI(){
         b1.whenPressed(new ArmExtend());
         b1.whenReleased(new ArmRetract());
         b2.whenPressed(new CompressorRun());
         b3.whenPressed(new CompressorStop());
+        b4.whenPressed(new Autonomous());
     }
             
 }
