@@ -20,11 +20,16 @@ public class RobotMap {
     
     public static final int LEFT_MOTORS = 2;  // This is the PWM channel
     public static final int RIGHT_MOTORS = 1; // This is the PWN channel
-    
+    public static final int UPPER_WHEELS_MOTOR = 3;
+    public static final int LOWER_WHEELS_MOTOR = 4;
+    public static final int KICKER_MOTOR = 3;
+            
     public static final int JOYSTICK_ONE = 1; // This is the Joystick USB input
     
     public static final int COMPRESSOR_ONE = 1; //This is the relay channel
+    
     public static final int PRESSURE_SWITCH = 1;//This is pressure switch input channel
+    
     public static final int[] dSOLINOID_ONE = {1,2};//this is the solinoid ports
     
     
