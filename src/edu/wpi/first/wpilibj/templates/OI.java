@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.templates.commands.ArmRetract;
 import edu.wpi.first.wpilibj.templates.commands.Autonomous;
 import edu.wpi.first.wpilibj.templates.commands.CompressorRun;
 import edu.wpi.first.wpilibj.templates.commands.CompressorStop;
+import edu.wpi.first.wpilibj.templates.commands.KickerKick;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,6 +51,7 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
     
     public Joystick stickOne = new Joystick(RobotMap.JOYSTICK_ONE);
+    public Joystick kickerStick = new Joystick(RobotMap.JOYSTICK_TWO);
     
    public Button b1 = new JoystickButton(stickOne, 1);
    public Button b2 = new JoystickButton(stickOne, 2);
@@ -66,7 +68,7 @@ public class OI {
         b1.whenReleased(new ArmRetract());
         b2.whenPressed(new CompressorRun());
         b3.whenPressed(new CompressorStop());
-        b4.whenPressed(new Autonomous());
+        b4.whenPressed(new KickerKick());
     }
             
 }

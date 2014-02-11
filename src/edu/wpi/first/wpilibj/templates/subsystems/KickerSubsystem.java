@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
+import edu.wpi.first.wpilibj.templates.commands.kickerDoNothing;
 
 /**
  *
@@ -22,13 +23,16 @@ public class KickerSubsystem extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand((new kickerDoNothing()));
     }
     
     public void set(){
-        
     }
     
     public void Kick(){
-        
+        vic.set(1.0);
+    }
+    public void DoNothing(){
+        vic.set(0.0);
     }
 }
