@@ -7,10 +7,13 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.ArmDoNothing;
+import edu.wpi.first.wpilibj.templates.commands.armMove;
 
 
 /**
@@ -18,25 +21,22 @@ import edu.wpi.first.wpilibj.templates.commands.ArmDoNothing;
  * @author John
  */
 public class ArmSubsystems extends Subsystem{
-    private DoubleSolenoid arm = new DoubleSolenoid(RobotMap.dSOLINOID_ONE[0], RobotMap.dSOLINOID_ONE[1]);
+    private SpeedController arm = new Victor(RobotMap.ARM_MOTOR);
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand(new ArmDoNothing());
+        setDefaultCommand(new armMove());
        
     }
     public void doNothing(){
-        arm.set(DoubleSolenoid.Value.kOff);
+        arm.set(0);
     }
-    public void forward(){
-        arm.set(DoubleSolenoid.Value.kForward);
+    public void move(Joystick stick) {
+        if(stick.getY()>.1 || stick.getY()< -.1){
+            arm.set(-stick.getY());
+        }
     }
-    public void reverse(){
-        arm.set(DoubleSolenoid.Value.kReverse);
-    }
-    public void Stop() {
-        
-    }
+    
     
 }

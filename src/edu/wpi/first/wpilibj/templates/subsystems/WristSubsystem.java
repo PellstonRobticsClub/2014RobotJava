@@ -5,35 +5,33 @@
  */
 package edu.wpi.first.wpilibj.templates.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
-
+import edu.wpi.first.wpilibj.templates.commands.WristDoNothing;
 
 /**
  *
  * @author John
  */
-public class UpperWheelsSubsystem extends Subsystem {
+public class WristSubsystem extends Subsystem {
+    private DoubleSolenoid wrist = new DoubleSolenoid(RobotMap.dSOLINOID_ONE[0],RobotMap.dSOLINOID_ONE[1]);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private SpeedController vic = new Victor(RobotMap.UPPER_WHEELS_MOTOR);
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new WristDoNothing());
     }
     
-    public void stop(){
-        
+    public void DoNothing(){
+       wrist.set(DoubleSolenoid.Value.kOff);
     }
-    
-    public void forward(double speed){
-        
+    public void Open(){
+        wrist.set(DoubleSolenoid.Value.kForward);
     }
-    
-    public void reverse(double speed){
-        
+    public void close(){
+        wrist.set(DoubleSolenoid.Value.kReverse);
     }
 }

@@ -9,9 +9,9 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author John
  */
-public class ArmExtend extends CommandBase {
+public class armMove extends CommandBase {
     
-    public ArmExtend() {
+    public armMove() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(arm);
@@ -23,7 +23,7 @@ public class ArmExtend extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        arm.forward();
+        arm.move(oi.kickerStick);
     }
 
     // Make this return true when this Command no longer needs to run execute()

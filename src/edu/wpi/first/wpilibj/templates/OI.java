@@ -4,14 +4,13 @@ package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.templates.commands.ArmExtend;
-import edu.wpi.first.wpilibj.templates.commands.ArmRetract;
-import edu.wpi.first.wpilibj.templates.commands.Autonomous;
 import edu.wpi.first.wpilibj.templates.commands.CompressorRun;
 import edu.wpi.first.wpilibj.templates.commands.CompressorStop;
-import edu.wpi.first.wpilibj.templates.commands.KickerKick;
+import edu.wpi.first.wpilibj.templates.commands.WristClose;
+import edu.wpi.first.wpilibj.templates.commands.WristDoNothing;
+import edu.wpi.first.wpilibj.templates.commands.WristOpen;
+import edu.wpi.first.wpilibj.templates.commands.setKickerPosition;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -53,22 +52,23 @@ public class OI {
     public Joystick stickOne = new Joystick(RobotMap.JOYSTICK_ONE);
     public Joystick kickerStick = new Joystick(RobotMap.JOYSTICK_TWO);
     
-   public Button b1 = new JoystickButton(stickOne, 1);
-   public Button b2 = new JoystickButton(stickOne, 2);
-   public Button b3 = new JoystickButton(stickOne, 3);
-   public Button b4 = new JoystickButton(stickOne, 4);
-   public Button b5 = new JoystickButton(stickOne, 5);
-   public Button b6 = new JoystickButton(stickOne, 6);
-   public Button b7 = new JoystickButton(stickOne, 7);
-   public Button b8 = new JoystickButton(stickOne, 8);
-   public Button b9 = new JoystickButton(stickOne, 9);
+   public Button compressorStartButton = new JoystickButton(stickOne, 2);
+   public Button compressorStopButton = new JoystickButton(stickOne, 3);
+   
+   public Button setButton = new JoystickButton(kickerStick, 3);
+   public Button kickButton = new JoystickButton(kickerStick, 4);
+   public Button wristCloseButton = new JoystickButton(kickerStick, 1);
+   public Button wristOpenButton = new JoystickButton(kickerStick, 2);
    
     public OI(){
-        b1.whenPressed(new ArmExtend());
-        b1.whenReleased(new ArmRetract());
-        b2.whenPressed(new CompressorRun());
-        b3.whenPressed(new CompressorStop());
-        b4.whenPressed(new KickerKick());
+        compressorStartButton.whenPressed(new CompressorRun());
+        compressorStopButton.whenPressed(new CompressorStop());
+        kickButton.whenPressed(new setKickerPosition(2.0,true));
+        setButton.whenPressed(new setKickerPosition(1.7,false));
+        wristCloseButton.whenPressed(new WristClose());
+        wristCloseButton.whenReleased(new WristDoNothing());
+        wristOpenButton.whenPressed(new WristOpen());
+        
     }
             
 }
