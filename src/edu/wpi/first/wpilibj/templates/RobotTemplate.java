@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.commands.Autonomous;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
@@ -36,11 +37,13 @@ public class RobotTemplate extends IterativeRobot {
 
         // Initialize all subsystems
         CommandBase.init();
+        SmartDashboard.putData(Scheduler.getInstance());
     }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
         autonomousCommand.start();
+        UpdateStatus();
     }
 
     /**
@@ -48,6 +51,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        UpdateStatus();
     }
 
     public void teleopInit() {
@@ -56,6 +60,7 @@ public class RobotTemplate extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
+        UpdateStatus();
     }
 
     /**
@@ -63,6 +68,7 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        UpdateStatus();
     }
     
     /**
@@ -70,5 +76,11 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    public void disabledPeriodic() {
+        UpdateStatus();
+    }
+    public void UpdateStatus(){
+        CommandBase.kick.UpdateStatus();
     }
 }

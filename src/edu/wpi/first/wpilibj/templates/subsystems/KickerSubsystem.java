@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.kickerDoNothing;
 
@@ -18,7 +19,7 @@ import edu.wpi.first.wpilibj.templates.commands.kickerDoNothing;
  */
 public class KickerSubsystem extends PIDSubsystem {
 
-    private static final double Kp = -1;
+    private static final double Kp = -2;
     private static final double Ki = 0.0;
     private static final double Kd = 0.0;
     public boolean kicking = false;
@@ -55,7 +56,7 @@ public class KickerSubsystem extends PIDSubsystem {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
         if (this.kicking==true){
-            kicker.set(output*4);
+            kicker.set(output*12);
         } else {
             kicker.set(output);
         }
@@ -64,6 +65,10 @@ public class KickerSubsystem extends PIDSubsystem {
     public void DoNothing(){
         this.kicking = false;
         disable();
+    }
+    
+    public void UpdateStatus(){
+        SmartDashboard.putNumber("Kicker Pot", pot.getVoltage());
     }
     
 }

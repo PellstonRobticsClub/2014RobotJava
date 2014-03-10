@@ -23,7 +23,12 @@ public class WristClose extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        wrist.close();
+        if(oi.KickerStickActiveButton.get()){
+            wrist.close();
+        } else {
+            wrist.DoNothing();
+        }
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()

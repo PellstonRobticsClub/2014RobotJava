@@ -49,21 +49,23 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     
-    public Joystick stickOne = new Joystick(RobotMap.JOYSTICK_ONE);
+    public Joystick DriveStick = new Joystick(RobotMap.JOYSTICK_ONE);
     public Joystick kickerStick = new Joystick(RobotMap.JOYSTICK_TWO);
     
-   public Button compressorStartButton = new JoystickButton(stickOne, 2);
-   public Button compressorStopButton = new JoystickButton(stickOne, 3);
+   public Button compressorStartButton = new JoystickButton(DriveStick, 2);
+   public Button compressorStopButton = new JoystickButton(DriveStick, 3);
    
    public Button setButton = new JoystickButton(kickerStick, 3);
    public Button kickButton = new JoystickButton(kickerStick, 4);
    public Button wristCloseButton = new JoystickButton(kickerStick, 1);
    public Button wristOpenButton = new JoystickButton(kickerStick, 2);
+   public Button moveArmButton = new JoystickButton(kickerStick, 6);
+   public Button KickerStickActiveButton = new JoystickButton(kickerStick, 7);
    
     public OI(){
         compressorStartButton.whenPressed(new CompressorRun());
         compressorStopButton.whenPressed(new CompressorStop());
-        kickButton.whenPressed(new setKickerPosition(2.0,true));
+        kickButton.whenPressed(new setKickerPosition(2.1,true));
         setButton.whenPressed(new setKickerPosition(1.7,false));
         wristCloseButton.whenPressed(new WristClose());
         wristCloseButton.whenReleased(new WristDoNothing());

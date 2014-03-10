@@ -23,7 +23,11 @@ public class WristOpen extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        wrist.Open();
+        if(oi.KickerStickActiveButton.get()){
+            wrist.Open();
+        } else {
+            wrist.DoNothing();
+        }
         
     }
 
