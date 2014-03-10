@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.commands.CompressorRun;
 import edu.wpi.first.wpilibj.templates.commands.CompressorStop;
+import edu.wpi.first.wpilibj.templates.commands.CompressorSwitchState;
 import edu.wpi.first.wpilibj.templates.commands.WristClose;
 import edu.wpi.first.wpilibj.templates.commands.WristDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.WristOpen;
@@ -53,7 +54,6 @@ public class OI {
     public Joystick kickerStick = new Joystick(RobotMap.JOYSTICK_TWO);
     
    public Button compressorStartButton = new JoystickButton(DriveStick, 2);
-   public Button compressorStopButton = new JoystickButton(DriveStick, 3);
    
    public Button setButton = new JoystickButton(kickerStick, 3);
    public Button kickButton = new JoystickButton(kickerStick, 4);
@@ -63,8 +63,7 @@ public class OI {
    public Button KickerStickActiveButton = new JoystickButton(kickerStick, 7);
    
     public OI(){
-        compressorStartButton.whenPressed(new CompressorRun());
-        compressorStopButton.whenPressed(new CompressorStop());
+        compressorStartButton.whenPressed(new CompressorSwitchState());
         kickButton.whenPressed(new setKickerPosition(2.1,true));
         setButton.whenPressed(new setKickerPosition(1.7,false));
         wristCloseButton.whenPressed(new WristClose());
