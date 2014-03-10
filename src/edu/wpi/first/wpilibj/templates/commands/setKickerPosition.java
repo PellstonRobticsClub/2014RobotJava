@@ -26,8 +26,13 @@ public class setKickerPosition extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        kick.setSetpoint(this.position);
-        kick.enable();
+        if(oi.KickerStickActiveButton.get()){
+            kick.setSetpoint(this.position);
+            kick.enable();
+        } else {
+            kick.DoNothing();
+        }
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
