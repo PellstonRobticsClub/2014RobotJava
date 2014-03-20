@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.templates.subsystems.ArmSubsystems;
 import edu.wpi.first.wpilibj.templates.subsystems.ChassisSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.CompressorSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.KickerSubsystem;
+import edu.wpi.first.wpilibj.templates.subsystems.LightSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.WristSubsystem;
 
 
@@ -25,6 +26,7 @@ public abstract class CommandBase extends Command {
     public static CompressorSubsystem compressor = new CompressorSubsystem();
     public static KickerSubsystem kick = new KickerSubsystem();
     public static WristSubsystem wrist = new WristSubsystem();
+    public static LightSubsystem lights = new LightSubsystem();
     
 
     public static void init() {

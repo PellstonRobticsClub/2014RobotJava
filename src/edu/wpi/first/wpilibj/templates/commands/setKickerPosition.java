@@ -11,13 +11,21 @@ package edu.wpi.first.wpilibj.templates.commands;
  */
 public class setKickerPosition extends CommandBase {
     private double position;
+    private boolean compRunning = false;
     
     public setKickerPosition(double position,boolean isKicking) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(kick);
+        //if(compressor.running){
+        //    compRunning = true;
+        //    compressor.stop();
+        //}
         kick.kicking=isKicking;
         this.position = position;
+        //if(compRunning){
+        //    compressor.run();
+        //}
     }
 
     // Called just before this Command runs the first time
@@ -31,6 +39,7 @@ public class setKickerPosition extends CommandBase {
             kick.enable();
         } else {
             kick.DoNothing();
+            this.cancel();
         }
         
     }

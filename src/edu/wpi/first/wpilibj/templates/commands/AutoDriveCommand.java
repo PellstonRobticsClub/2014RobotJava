@@ -4,6 +4,8 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.templates.RobotMap;
+
 /**
  *
  * @author Kyle Flynn
@@ -22,9 +24,8 @@ public class AutoDriveCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        chassis.AutoDrive(1.0f,1.0f);
+        chassis.AutoDrive(RobotMap.LEFT_MOTOR_SPEED,RobotMap.RIGHT_MOTOR_SPEED);
         
-      
     }
 
     // Make this return true when this Command no longer needs to run execute()

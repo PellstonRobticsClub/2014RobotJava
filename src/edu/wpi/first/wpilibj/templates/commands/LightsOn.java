@@ -9,30 +9,26 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author John
  */
-public class WristClose extends CommandBase {
+public class LightsOn extends CommandBase {
     
-    public WristClose() {
+    public LightsOn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(wrist);
-        setTimeout(2);
+        requires(lights);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        lights.On();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
-            wrist.close();
-      
-        
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     // Called once after isFinished returns true

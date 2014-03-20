@@ -57,7 +57,7 @@ public class KickerSubsystem extends PIDSubsystem {
         // e.g. yourMotor.set(output);
         SmartDashboard.putNumber("Kicker output", output);
         if (this.kicking==true){
-            kicker.set(output*12);
+            kicker.set(output*20);
         } else {
             kicker.set(output);
         }

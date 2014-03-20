@@ -9,13 +9,13 @@ package edu.wpi.first.wpilibj.templates.commands;
  *
  * @author John
  */
-public class WristClose extends CommandBase {
+public class ArmUp extends CommandBase {
     
-    public WristClose() {
+    public ArmUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(wrist);
-        setTimeout(2);
+        requires(arm);
+        setTimeout(1);
     }
 
     // Called just before this Command runs the first time
@@ -24,10 +24,7 @@ public class WristClose extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
-            wrist.close();
-      
-        
+        arm.Up();
     }
 
     // Make this return true when this Command no longer needs to run execute()

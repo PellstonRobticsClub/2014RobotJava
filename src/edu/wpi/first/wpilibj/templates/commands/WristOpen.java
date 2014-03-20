@@ -15,6 +15,7 @@ public class WristOpen extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(wrist);
+        setTimeout(.5);
     }
 
     // Called just before this Command runs the first time
@@ -23,17 +24,15 @@ public class WristOpen extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(oi.KickerStickActiveButton.get()){
+      
             wrist.Open();
-        } else {
-            wrist.DoNothing();
-        }
+        
         
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

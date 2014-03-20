@@ -23,7 +23,7 @@ public class ChassisSubsystem extends Subsystem {
     }
     
     public void Drive(Joystick stick) {
-       double speed = ((stick.getZ()+1)/2)/2 +.5;
+       double speed = ((stick.getZ()+1)/4) +.5;
         
         robot.arcadeDrive(-stick.getY()*speed, -stick.getX()*speed);
         
@@ -31,7 +31,7 @@ public class ChassisSubsystem extends Subsystem {
     
     public void AutoDrive(float x,float y) {
         
-        robot.tankDrive(-x, -y);    }
+        robot.tankDrive(x, y);    }
     
     public void Stop() {
         robot.drive(0, 0);

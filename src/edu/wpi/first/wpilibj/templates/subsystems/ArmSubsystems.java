@@ -7,12 +7,13 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.commands.ArmDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.armMove;
 
 
@@ -21,7 +22,9 @@ import edu.wpi.first.wpilibj.templates.commands.armMove;
  * @author John
  */
 public class ArmSubsystems extends Subsystem{
-    private SpeedController arm = new Victor(RobotMap.ARM_MOTOR);
+    private final SpeedController arm = new Victor(RobotMap.ARM_MOTOR);
+    private final DigitalInput DownButton = new DigitalInput(RobotMap.ARM_DOWN_BUTTON);
+
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -33,9 +36,33 @@ public class ArmSubsystems extends Subsystem{
         arm.set(0);
     }
     public void move(Joystick stick) {
-        if(stick.getY()>.1 || stick.getY()< -.1){
-            arm.set(-stick.getY());
+        double output = -stick.getY();
+        double speed;
+        if(IsDown()){
+            speed = Math.min(0, output);
+        } else {
+            speed = output;
         }
+            arm.set(speed);
+    }
+    
+    public void Down(){
+        arm.set(.25);
+    }
+    
+    public void Up(){
+        arm.set(-.7);
+        
+    }
+    
+    
+    public boolean IsDown(){
+        return DownButton.get();
+    }
+
+    public void UpdateStatus(){
+        SmartDashboard.putBoolean("ArmDown", IsDown());
+
     }
     
     

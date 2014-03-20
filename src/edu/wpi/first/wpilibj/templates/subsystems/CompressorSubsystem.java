@@ -18,7 +18,7 @@ public class CompressorSubsystem extends Subsystem {
     // here. Call these from Commands.
     private Compressor comp = new Compressor(RobotMap.PRESSURE_SWITCH,
             RobotMap.COMPRESSOR_ONE);
-    private boolean running = false;
+    public boolean running = false;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -26,10 +26,12 @@ public class CompressorSubsystem extends Subsystem {
     }
     
     public void run(){
+        this.running = true;
         comp.start();
     }
     
     public void stop(){
+        this.running = false;
         comp.stop();
     }
     public void SwitchState(){

@@ -5,34 +5,37 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.RobotMap;
+
 /**
  *
  * @author John
  */
-public class WristClose extends CommandBase {
+public class autoKick extends CommandBase {
     
-    public WristClose() {
+    public autoKick() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(wrist);
-        setTimeout(2);
+        requires(kick);
+        kick.kicking=true;
+        SmartDashboard.putBoolean("true", true);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
-            wrist.close();
-      
-        
+        kick.setSetpoint(RobotMap.KICK_POSITION);
+        kick.enable();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return Math.abs(kick.getPosition()- RobotMap.KICK_POSITION)<.08;
     }
 
     // Called once after isFinished returns true
