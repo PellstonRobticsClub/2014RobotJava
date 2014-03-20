@@ -7,7 +7,9 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.commands.CompressorRun;
 import edu.wpi.first.wpilibj.templates.commands.CompressorStop;
-import edu.wpi.first.wpilibj.templates.commands.CompressorSwitchState;
+import edu.wpi.first.wpilibj.templates.commands.LightsFlash;
+import edu.wpi.first.wpilibj.templates.commands.LightsOff;
+import edu.wpi.first.wpilibj.templates.commands.LightsOn;
 import edu.wpi.first.wpilibj.templates.commands.WristClose;
 import edu.wpi.first.wpilibj.templates.commands.WristDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.WristOpen;
@@ -53,22 +55,33 @@ public class OI {
     public Joystick DriveStick = new Joystick(RobotMap.JOYSTICK_ONE);
     public Joystick kickerStick = new Joystick(RobotMap.JOYSTICK_TWO);
     
+    
+    
    public Button compressorStartButton = new JoystickButton(DriveStick, 2);
+   public Button compressorStopButton = new JoystickButton(DriveStick, 3);
+   public Button LightsOnButton = new JoystickButton(DriveStick, 6);
+   public Button LightsOffButton = new JoystickButton(DriveStick, 7);
+   public Button LightsFlashButton = new JoystickButton(DriveStick, 8);
    
    public Button setButton = new JoystickButton(kickerStick, 3);
-   public Button kickButton = new JoystickButton(kickerStick, 4);
+   public Button kickButton = new JoystickButton(kickerStick, 8);
    public Button wristCloseButton = new JoystickButton(kickerStick, 1);
    public Button wristOpenButton = new JoystickButton(kickerStick, 2);
    public Button moveArmButton = new JoystickButton(kickerStick, 6);
    public Button KickerStickActiveButton = new JoystickButton(kickerStick, 7);
    
     public OI(){
-        compressorStartButton.whenPressed(new CompressorSwitchState());
-        kickButton.whenPressed(new setKickerPosition(2.1,true));
-        setButton.whenPressed(new setKickerPosition(1.7,false));
+        compressorStartButton.whenPressed(new CompressorRun());
+        compressorStopButton.whenPressed(new CompressorStop());
+        kickButton.whenPressed(new setKickerPosition(RobotMap.KICK_POSITION,true));
+        setButton.whenPressed(new setKickerPosition(RobotMap.SET_POSITION,false));
         wristCloseButton.whenPressed(new WristClose());
         wristCloseButton.whenReleased(new WristDoNothing());
         wristOpenButton.whenPressed(new WristOpen());
+        LightsOnButton.whenPressed(new LightsOn());
+        LightsOffButton.whenPressed(new LightsOff());
+        LightsFlashButton.whenPressed(new LightsFlash());
+        
         
     }
             
