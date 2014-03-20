@@ -5,6 +5,7 @@
 package edu.wpi.first.wpilibj.templates.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
  *
@@ -29,7 +30,17 @@ public class Autonomous extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        addSequential(new AutoDriveCommand(), 5.0);
+        addSequential(new WristOpen());
+        addSequential(new ArmDown());
+        
+        addSequential(new WristClose());
+        addSequential(new AutoDriveCommand(), RobotMap.AUTO_DRIVE_TIME);
+        addSequential(new ArmUp());
+        addSequential(new ArmDoNothing());
+        
+        
+        addSequential(new autoKick());
+        
         
         
     }
