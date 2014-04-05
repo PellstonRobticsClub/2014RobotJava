@@ -22,11 +22,11 @@ public class RobotMap {
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
     
-    public static double SET_POSITION;
-    public static double KICK_POSITION;
-    public static float LEFT_MOTOR_SPEED;
-    public static float RIGHT_MOTOR_SPEED;
-    public static double AUTO_DRIVE_TIME;
+    public static double SET_POSITION = 1.75;
+    public static double KICK_POSITION = 2.2;
+    public static float LEFT_MOTOR_SPEED =.56f;
+    public static float RIGHT_MOTOR_SPEED =.55f;
+    public static double AUTO_DRIVE_TIME= 5;
     
     // PWM PORTS
     public static final int LEFT_MOTORS = 2;  // This is the PWM channel

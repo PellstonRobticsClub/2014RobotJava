@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.templates.commands.LightsOn;
 import edu.wpi.first.wpilibj.templates.commands.WristClose;
 import edu.wpi.first.wpilibj.templates.commands.WristDoNothing;
 import edu.wpi.first.wpilibj.templates.commands.WristOpen;
+import edu.wpi.first.wpilibj.templates.commands.autoKick;
+import edu.wpi.first.wpilibj.templates.commands.kickKickerPosition;
 import edu.wpi.first.wpilibj.templates.commands.setKickerPosition;
 
 /**
@@ -69,18 +71,20 @@ public class OI {
    public Button wristOpenButton = new JoystickButton(kickerStick, 2);
    public Button moveArmButton = new JoystickButton(kickerStick, 6);
    public Button KickerStickActiveButton = new JoystickButton(kickerStick, 7);
+   public Button TestKick = new JoystickButton(kickerStick, 12);
    
     public OI(){
         compressorStartButton.whenPressed(new CompressorRun());
         compressorStopButton.whenPressed(new CompressorStop());
-        kickButton.whenPressed(new setKickerPosition(RobotMap.KICK_POSITION,true));
-        setButton.whenPressed(new setKickerPosition(RobotMap.SET_POSITION,false));
+        kickButton.whenPressed(new kickKickerPosition());
+        setButton.whenPressed(new setKickerPosition());
         wristCloseButton.whenPressed(new WristClose());
         wristCloseButton.whenReleased(new WristDoNothing());
         wristOpenButton.whenPressed(new WristOpen());
         LightsOnButton.whenPressed(new LightsOn());
         LightsOffButton.whenPressed(new LightsOff());
         LightsFlashButton.whenPressed(new LightsFlash());
+        TestKick.whenPressed(new autoKick());
         
         
     }

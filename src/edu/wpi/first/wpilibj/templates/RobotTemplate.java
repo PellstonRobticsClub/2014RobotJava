@@ -35,11 +35,11 @@ public class RobotTemplate extends IterativeRobot {
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        RobotMap.SET_POSITION = prefs.getDouble("setPosition", 1.75);
-        RobotMap.KICK_POSITION = prefs.getDouble("kickPosition", 2.2);
-        RobotMap.LEFT_MOTOR_SPEED = prefs.getFloat("LeftMotorSpeed", .55f);
-        RobotMap.RIGHT_MOTOR_SPEED = prefs.getFloat("RightMotorSpeed", .53f);
-        RobotMap.AUTO_DRIVE_TIME = prefs.getDouble("AutoDriveTime", 4);
+        //RobotMap.SET_POSITION = prefs.getDouble("setPosition", 1.75);
+        //RobotMap.KICK_POSITION = prefs.getDouble("kickPosition", 2.2);
+        //RobotMap.LEFT_MOTOR_SPEED = prefs.getFloat("LeftMotorSpeed", .55f);
+        //RobotMap.RIGHT_MOTOR_SPEED = prefs.getFloat("RightMotorSpeed", .53f);
+        //RobotMap.AUTO_DRIVE_TIME = prefs.getDouble("AutoDriveTime", 4);
         autonomousCommand = new Autonomous();
 
         // Initialize all subsystems
@@ -90,5 +90,6 @@ public class RobotTemplate extends IterativeRobot {
     public void UpdateStatus(){
         CommandBase.kick.UpdateStatus();
         CommandBase.arm.UpdateStatus();
+        CommandBase.compressor.UpdateStatus();
     }
 }

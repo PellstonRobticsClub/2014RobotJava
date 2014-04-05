@@ -47,7 +47,7 @@ public class ArmSubsystems extends Subsystem{
     }
     
     public void Down(){
-        arm.set(.25);
+        arm.set(.4);
     }
     
     public void Up(){

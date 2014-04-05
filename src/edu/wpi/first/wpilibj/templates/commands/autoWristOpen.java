@@ -4,55 +4,35 @@
  * and open the template in the editor.
  */
 package edu.wpi.first.wpilibj.templates.commands;
-    
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.RobotMap;
+
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
  * @author John
  */
-public class setKickerPosition extends CommandBase {
-    private double position;
-    private boolean compRunning = false;
+public class autoWristOpen extends CommandBase {
     
-    public setKickerPosition() {
+    public autoWristOpen() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(kick);
-        
-        
-        this.position = RobotMap.SET_POSITION;
-        
+        requires(wrist);
+        setTimeout(1);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        Timer.delay(.2);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(compressor.running){
-            compRunning = true;
-            compressor.stop();
-        }
-        kick.auto=false;
-        kick.kicking=false;
-        if(oi.KickerStickActiveButton.get()){
-            kick.setSetpoint(this.position);
-            kick.enable();
-        } else {
-            kick.DoNothing();
-            this.cancel();
-        }
-        if(compRunning){
-            compressor.run();
-        }
+        wrist.Open();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(kick.getPosition()- this.position)<.08;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

@@ -18,7 +18,8 @@ public class autoKick extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(kick);
-        kick.kicking=true;
+        kick.auto=true;
+        kick.kicking =false;
         SmartDashboard.putBoolean("true", true);
     }
 

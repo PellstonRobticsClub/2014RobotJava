@@ -7,6 +7,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -42,5 +43,9 @@ public class CompressorSubsystem extends Subsystem {
             run();
             running = true;
         }
+    }
+    public void UpdateStatus(){
+        SmartDashboard.putBoolean("Compressor running", this.running);
+        SmartDashboard.putBoolean("Pressure Switch", comp.getPressureSwitchValue());
     }
 }

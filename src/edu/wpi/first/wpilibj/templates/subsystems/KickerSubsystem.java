@@ -6,6 +6,7 @@
 package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogChannel;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -22,9 +23,11 @@ public class KickerSubsystem extends PIDSubsystem {
     private static final double Kp = -2;
     private static final double Ki = 0.0;
     private static final double Kd = 0.0;
+    public double amplify;
     public boolean kicking = false;
+    public boolean auto = false;
     public void setSetpoint(double setpoint) {
-        super.setSetpoint(setpoint); //To change body of generated methods, choose Tools | Templates.
+        super.setSetpoint(setpoint); 
     }
     SpeedController kicker = new Victor(RobotMap.KICKER_MOTOR);
     AnalogChannel pot = new AnalogChannel(1);
@@ -32,6 +35,7 @@ public class KickerSubsystem extends PIDSubsystem {
     // Initialize your subsystem here
     public KickerSubsystem() {
         super("KickerSubsystem", Kp, Ki, Kd);
+        
 
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system
@@ -55,12 +59,11 @@ public class KickerSubsystem extends PIDSubsystem {
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
-        SmartDashboard.putNumber("Kicker output", output);
-        if (this.kicking==true){
-            kicker.set(output*20);
-        } else {
-            kicker.set(output);
+        double speed = output;
+        if(this.kicking){
+            speed=output*this.amplify;
         }
+        kicker.set(speed);
     }
     
     public void DoNothing(){

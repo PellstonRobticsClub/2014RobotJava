@@ -4,26 +4,29 @@
  * and open the template in the editor.
  */
 package edu.wpi.first.wpilibj.templates.commands;
-    
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
  *
  * @author John
  */
-public class setKickerPosition extends CommandBase {
-    private double position;
-    private boolean compRunning = false;
+public class kickKickerPosition extends CommandBase {
+    double position;
     
-    public setKickerPosition() {
+    public kickKickerPosition() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(kick);
-        
-        
-        this.position = RobotMap.SET_POSITION;
-        
+        //if(compressor.running){
+        //    compRunning = true;
+        //    compressor.stop();
+        //}
+       
+        this.position = RobotMap.KICK_POSITION;
+        //if(compRunning){
+        //    compressor.run();
+        //}
     }
 
     // Called just before this Command runs the first time
@@ -32,21 +35,15 @@ public class setKickerPosition extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(compressor.running){
-            compRunning = true;
-            compressor.stop();
-        }
-        kick.auto=false;
-        kick.kicking=false;
+         kick.auto=false;
+        kick.kicking=true;
+        kick.amplify = ((oi.kickerStick.getZ()*14.5)*15.5);
         if(oi.KickerStickActiveButton.get()){
             kick.setSetpoint(this.position);
             kick.enable();
         } else {
             kick.DoNothing();
             this.cancel();
-        }
-        if(compRunning){
-            compressor.run();
         }
     }
 

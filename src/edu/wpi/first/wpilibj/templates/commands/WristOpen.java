@@ -5,6 +5,8 @@
  */
 package edu.wpi.first.wpilibj.templates.commands;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  *
  * @author John
@@ -15,7 +17,7 @@ public class WristOpen extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(wrist);
-        setTimeout(.5);
+        setTimeout(1);
     }
 
     // Called just before this Command runs the first time
