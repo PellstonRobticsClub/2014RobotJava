@@ -37,7 +37,7 @@ public class kickKickerPosition extends CommandBase {
     protected void execute() {
          kick.auto=false;
         kick.kicking=true;
-        kick.amplify = ((oi.kickerStick.getZ()*14.5)*15.5);
+        kick.amplify = ((oi.kickerStick.getZ()*14.5)+15.5);
         if(oi.KickerStickActiveButton.get()){
             kick.setSetpoint(this.position);
             kick.enable();
